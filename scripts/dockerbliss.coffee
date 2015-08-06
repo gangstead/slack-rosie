@@ -30,5 +30,5 @@ module.exports = (robot) ->
   robot.respond /(d|D)ocker( )?(b|B)liss/i, (msg) ->
     msg.send dockerBliss.join('\n')
 
-  robot.respond /(N|n)(P|p)(M|m)( )?(H|h)ap(p)iness/i, (msg) ->
+  robot.respond /(N|n)(P|p)(M|m)( )?(H|h)ap(p)?iness/i, (msg) ->
     msg.send npmHappiness.join('\n')
