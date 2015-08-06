@@ -9,6 +9,8 @@
 #   hhttps://gist.github.com/pkinney/967999b892a73059dcc7
 
 dockerBliss = [
+  "*Powell's 6-Step Plan to Docker Bliss*",
+  "When things go wrong:",
   "1. Do what the error says",
   "2. `rm -rf node_modules && npm install` (if in Ember.js - `rm -rf bower_components  && bower install`)",
   "3. `rm -rf node_modules && rm -rf ~/.npm && npm install`",
@@ -18,6 +20,8 @@ dockerBliss = [
 ]
 
 npmHappiness = [
+  "*Powell's 6-Step Plan to NPM Happiness*",
+  "When things go wrong:",
   "1. Do what the error says",
   "2. `docker kill \\$(docker ps -a -q) && docker rm \\$(docker ps -a -q)`",
   "3. `boot2docker down && boot2docker up`",
