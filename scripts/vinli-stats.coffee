@@ -16,7 +16,6 @@
 module.exports = (robot) ->
   robot.respond /vinli stats ?(.*)$/i, (msg) ->
     service = msg.match[1]
-    console.log 'swg service: ' + service
     get_stats robot, msg, service, send_stats
 
 # check cache, get data, store data, invoke callback.
