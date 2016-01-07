@@ -30,6 +30,8 @@ get_stats = (robot, msg, service, cb) ->
     .http(statsUrl)
     .headers(Authorization: auth, Accept: 'application/json')
     .get() (err, res, body) ->
+      if err
+        msg.send "Try a different service.  #{err}"
       if res.statusCode != 200
         msg.send "Oh dear.  I got #{res.statusCode} when trying to reach #{statsUrl}"
         return
