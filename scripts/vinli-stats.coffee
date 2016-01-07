@@ -32,12 +32,12 @@ get_stats = (robot, msg, service, cb) ->
     .get() (err, res, body) ->
       data = JSON.parse(body)
 
-      if data.response?.error?
-        msg.send data.response.error.description
+      if data.stats?
+        cb msg, data.stats
       # looks good
       else
-        cb msg, data.stats
+        msg.send "Nice try, but there are no stats for #{service}"
 
 send_stats = (msg, stats) ->
-  out = JSON.stringify(stats, null, 2)
+  out = JSON.stringify(stats, null, 2).replace(/\"([^(\")"]+)\":/g,"$1:")
   msg.send "Here's your stats (dev environment): ```#{out}```"
