@@ -8,7 +8,7 @@
 #   HUBUT_VINLI_STATS_INTERNAL_KEY
 #
 # Commands:
-#   hubot vinli stats <service> - stats for a service
+#   hubot vinli stats <service> - stats for a service (known services with stats endpoints: dev wireless trips events)
 #
 # Author:
 #   gangstead
@@ -25,12 +25,16 @@ get_stats = (robot, msg, service, cb) ->
     return
   # get new data
   auth = 'Basic ' + new Buffer('_internal:' + process.env.HUBUT_VINLI_STATS_INTERNAL_KEY).toString('base64')
+  statsUrl = "https://#{service}-dev.vin.li/api/v1/_internal/stats"
   msg
-    .http("https://#{service}-dev.vin.li/api/v1/_internal/stats")
+    .http(statsUrl)
     .headers(Authorization: auth, Accept: 'application/json')
     .get() (err, res, body) ->
-      data = JSON.parse(body)
+      if res.statusCode != 200
+        msg.send "Oh dear.  I got #{res.statusCode} when trying to reach #{statsUrl}"
+        return
 
+      data = JSON.parse(body)
       if data.stats?
         cb msg, data.stats
       # looks good
